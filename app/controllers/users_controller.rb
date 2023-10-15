@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :department, :password, :password_confirmation)
     end
 
     # beforeフィルター
@@ -59,11 +59,11 @@ class UsersController < ApplicationController
 
     # ログイン済みのユーザーか確認します。
     def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "ログインしてください。"
-        redirect_to login_url
-      end
+        unless logged_in?
+          store_location
+          flash[:danger] = "ログインしてください。"
+          redirect_to login_url
+        end
     end
 
     # アクセスしたユーザーが現在ログインしているユーザーか確認します。
